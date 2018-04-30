@@ -1,7 +1,10 @@
 from django.conf.urls import url
 from django.contrib import admin
+from form.views import Index as FormIndex
+
 
 urlpatterns = [
+    url(r'^$', FormIndex.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
 ]
 

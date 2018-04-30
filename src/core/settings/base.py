@@ -16,6 +16,7 @@ SECRET_KEY = 'asjofasfbasufbasiufuiasbfuiasbf'
 # Application definition
 INSTALLED_APPS = [
     'core',
+    'form',
     
     'django.contrib.admin',
     'django.contrib.auth',
