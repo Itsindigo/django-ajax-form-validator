@@ -1,0 +1,6 @@
+*.py[cod]
+*.swp
+.venv
+.sass-cache
+.idea
+node_modules/
