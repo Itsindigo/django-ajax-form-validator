@@ -12,7 +12,7 @@ ALLOWED_HOSTS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
+        'NAME': 'ajax-form-validator',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '',
