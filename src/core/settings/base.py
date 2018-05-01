@@ -4,6 +4,7 @@ from pathlib import Path
 
 # Build paths like this str(PROJECT_ROOT / 'foo' / 'bar')
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # This is what we use to prefix dbs and cache keys etc
 DEPLOY_ENV = os.environ['DEPLOY_ENV']
@@ -42,7 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
@@ -50,7 +51,8 @@ ROOT_URLCONF = 'core.urls'
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-STATIC_URL = '/'.join([str(PROJECT_ROOT), 'var', 'static/'])
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 SITE_ID = 1
 

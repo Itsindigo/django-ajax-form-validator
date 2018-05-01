@@ -1,41 +1,45 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+    <script type="text/javascript" src="{% static 'js/form-validator.js' %}"></script>
+{% endblock %}
 
 {% block body %}
     {{ block.super }}
 
-    <h1>Hello world</h1>
+    <div class="ui raised very padded text container segment">
+        <h2>Form</h2>
+        <form class="ui form" action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
 
-    <form action="{% url 'index' %}" method="POST">
-        {% csrf_token %}
+            <div class="field">
+                <label>{{ form.first_name.label }}</label>
+                {{ form.first_name }}
+            </div>
 
-        <div>
-            <label>{{ form.first_name.label }}</label>
-            {{ form.first_name }}
-        </div>
+            <div class="field">
+                <label>{{ form.last_name.label }}</label>
+                {{ form.last_name }}
+            </div>
 
-        <div>
-            <label>{{ form.last_name.label }}</label>
-            {{ form.last_name }}
-        </div>
+            <div class="field">
+                <label>{{ form.email.label }}</label>
+                {{ form.email }}
+            </div>
 
-        <div>
-            <label>{{ form.email.label }}</label>
-            {{ form.email }}
-        </div>
+            <div class="ui selection field">
+                <label>{{ form.country.label }}</label>
+                {{ form.country }}
+            </div>
 
-        <div>
-            <label>{{ form.country.label }}</label>
-            {{ form.country }}
-        </div>
+            <div class="field">
+                <label>{{ form.availability_date.label }}</label>
+                {{ form.availability_date }}
+            </div>
 
-        <div>
-            <label>{{ form.availability_date.label }}</label>
-            {{ form.availability_date }}
-        </div>
-
-        <div>
-            <input type="submit" value="Send" />
-        </div>
-    </form>
+            <input class="ui right floated button" type="submit" value="Send" />
+        </form>
+    </div>
 
 {% endblock %}
