@@ -4,4 +4,4 @@ class FormView {
     }
 }
 
-new FormView();
+new window.initialiser('index-form', FormView);

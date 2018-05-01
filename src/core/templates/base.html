@@ -20,4 +20,25 @@
 
         {% endblock body %}
     </body>
+
+    <script>
+        (function() {
+            class Initialiser {
+                constructor(selector, klass) {
+                    let node = document.querySelector(`[data-widget=${selector}]`);
+                    if (!node) {
+                        return;
+                    }
+
+                    return new klass(node)
+                }
+            }
+
+            window.initialiser = Initialiser;
+        })();
+    </script>
+
+    <footer>
+        {% block extra_scripts %}{% endblock extra_scripts%}
+    </footer>
 </html>

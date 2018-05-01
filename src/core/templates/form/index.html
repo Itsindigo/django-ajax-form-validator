@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extra_head %}
-    <script type="text/javascript" src="{% static 'js/form-validator.js' %}"></script>
-{% endblock %}
-
 {% block body %}
     {{ block.super }}
 
     <div class="ui raised very padded text container segment">
         <h2>Form</h2>
-        <form class="ui form" action="{% url 'index' %}" method="POST">
+        <form class="ui form" action="{% url 'index' %}" method="POST" data-widget="index-form">
             {% csrf_token %}
 
             <div class="field">
@@ -42,4 +38,8 @@
         </form>
     </div>
 
+{% endblock %}
+
+{% block extra_scripts %}
+    <script type="text/javascript" src="{% static 'js/form-validator.js' %}"></script>
 {% endblock %}
