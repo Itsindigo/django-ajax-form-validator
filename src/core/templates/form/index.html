@@ -6,7 +6,7 @@
 
     <div class="ui raised very padded text container segment">
         <h2>Form</h2>
-        <form class="ui form" action="{% url 'index' %}" method="POST" data-widget="index-form">
+        <form class="ui form" action="{% url 'index' %}" method="POST" data-widget="index-form" novalidate>
             {% csrf_token %}
 
             <div class="field">
