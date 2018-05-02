@@ -23,7 +23,6 @@ class FormView {
     }
 
     validateForm(data) {
-        console.log(data);
         fetch(window.location.pathname, {
             method: 'POST',
             credentials: 'same-origin',
@@ -34,12 +33,8 @@ class FormView {
             },
             body: data
         })
-        .then((response) => {
-            return Promise.resolve(response.json())
-        })
-        .then(function(data) {
-            console.log('data', data);
-        })
+        .then(response => response.json())
+        .then(data => console.log('data', data))
         .catch(function(err) {
             console.log('err', err);
         })
