@@ -34,9 +34,11 @@ class FormView {
             body: data
         })
         .then(response => response.json())
-        .then(data => console.log('data', data))
+        .then(data => {
+            data.errors ? this.handleErrorMessages(data) : this.container.submit();
+        })
         .catch(function(err) {
-            console.log('err', err);
+            console.error(err);
         })
     }
 
@@ -59,6 +61,37 @@ class FormView {
         }
         return cookieValue;
     }
+
+    handleErrorMessages(data) {
+        this.clearErrorMessages();
+        this.applyErrorMessages(data);
+    }
+
+    clearErrorMessages() {
+        let errors = this.container.querySelectorAll('error-wrapper');
+        if (errors.length) {
+            errors.map(error => error.remove())
+        }
+    }
+
+    applyErrorMessages(data) {
+        for (let fieldName in data) {
+            if (fieldName === '__all__') {
+                this._handleGeneralErrors(data[fieldName])
+            } else {
+                this._handleFieldErrors(data[fieldName])
+            }
+        }
+    }
+
+    _handleGeneralErrors(errors) {
+
+    }
+
+    _handleFieldErrors(errors) {
+
+    }
+
 }
 
 new window.initialiser('index-form', FormView);
