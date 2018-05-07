@@ -38,4 +38,10 @@ html, body {
     font-size: 0.9em;
     font-weight: bold; }
 
+div.error-message {
+  color: #e51c23;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 5px; }
+
 /*# sourceMappingURL=main.css.map */

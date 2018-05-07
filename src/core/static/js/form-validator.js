@@ -8,34 +8,34 @@ class FormView {
     }
 
     registerEventListeners() {
-        this.submit.addEventListener('click', this.handleFormSubmission.bind(this))
+        this.submit.addEventListener('click', this.handleFormSubmission.bind(this));
     };
 
     handleFormSubmission(e) {
         e.preventDefault();
-        let data = {};
+        let encodedProperties = [];
 
         [...this.container.elements].forEach((field) => {
-            data[field.name] = field.value;
+            let encodedField = `${encodeURIComponent(field.name)}=${encodeURIComponent(field.value)}`;
+            encodedProperties.push(encodedField);
         });
-
-        this.validateForm(data);
+        this.validateForm(encodedProperties.join('&'));
     }
 
     validateForm(data) {
         fetch(window.location.pathname, {
+            body: data,
             method: 'POST',
             credentials: 'same-origin',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                 'X-CSRFToken': this.getCSRFToken(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
-            body: data
         })
         .then(response => response.json())
         .then(data => {
-            data.errors ? this.handleErrorMessages(data.errors) : this.container.submit();
+            this._isEmpty(data.errors) ? this.container.submit() : this.handleErrorMessages(data.errors);
         })
         .catch(function(err) {
             console.error(err);
@@ -124,6 +124,10 @@ class FormView {
         // Place text in div
         div.appendChild(text);
         return div
+    }
+
+    _isEmpty(object) {
+        return Object.getOwnPropertyNames(object).length === 0
     }
 }
 

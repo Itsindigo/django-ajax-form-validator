@@ -1,15 +1,16 @@
 from django.forms import forms
 from django.forms import fields
+from django.forms import TextInput, HiddenInput
 
 
 class UserDetailsForm(forms.Form):
 
     COUNTRIES = [
-        ('ENGLAND', 'England'),
+        ('UNITED_KINGDOM', 'United Kingdom'),
         ('USA', 'U.S'),
         ('FRANCE', 'France'),
         ('GERMANY', 'Germany'),
-        ('Spain', 'Spain')
+        ('SPAIN', 'Spain')
     ]
 
     first_name = fields.CharField(
@@ -29,10 +30,11 @@ class UserDetailsForm(forms.Form):
     )
 
     availability_date = fields.DateField(
-        input_formats=['%m/%d/%y']
+        input_formats=['%m/%d/%Y'],
+        widget=TextInput(attrs={'placeholder': 'MM/DD/YYYY'})
     )
 
     def clean(self):
-        self.add_error(None, 'This is a General Error')
-        self.add_error(None, 'Another one')
+        # self.add_error(None, 'This is a General Error')
+        # self.add_error(None, 'Another one')
         super(UserDetailsForm, self).clean()

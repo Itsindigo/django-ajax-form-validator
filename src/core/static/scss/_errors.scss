@@ -15,3 +15,9 @@ $error-red: #e51c23;
   }
 }
 
+div.error-message {
+  color: $error-red;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 5px;
+}
