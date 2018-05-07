@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "==2.0"
 mysqlclient = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 
