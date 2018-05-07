@@ -37,6 +37,34 @@ class AjaxFormView(FormView):
 
 ```
 
+Supported by an AJAX request from the client side code:
+
+```javascript
+
+    validateForm(data) {
+        fetch(window.location.pathname, {
+            body: data,
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'X-CSRFToken': this.getCSRFToken(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            this._isEmpty(data.errors) ? this.container.submit() : this.handleErrorMessages(data.errors);
+        })
+        .catch(function(err) {
+            console.error(err);
+        })
+    }
+
+```
+
+Using this logic allows you to conditionally handle errors based on the JSON response, else allow the form to be processed by Django using the traditional x-www-url encoding.
+
 
 
 ### Dependencies
