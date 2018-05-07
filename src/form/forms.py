@@ -35,6 +35,4 @@ class UserDetailsForm(forms.Form):
     )
 
     def clean(self):
-        # self.add_error(None, 'This is a General Error')
-        # self.add_error(None, 'Another one')
         super(UserDetailsForm, self).clean()
