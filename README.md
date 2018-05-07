@@ -63,7 +63,7 @@ Supported by an AJAX request from the client side code:
 
 ```
 
-Using this logic allows you to conditionally handle errors based on the JSON response, else allow the form to be processed by Django using the traditional x-www-url encoding.
+Using this logic allows you to conditionally handle errors based on the JSON response, else allow the form to be processed by Django using the traditional x-www-url encoding, and all under one URL.
 
 
 
@@ -85,7 +85,9 @@ Running `make` will setup your virtualenv, and install the project dependencies,
 
 `pipenv shell` will open a bash shell with your developer environment.
 
-You will need to create a MySQL database instance and specify the connection details in `src/core/settings/local.py`
+You will need to create a database in order to run the project, you can use a configuration of your choice. 
+
+Set your config in a `.env` file in the root of your project, and follow the naming conventions described in [this package](https://github.com/kennethreitz/dj-database-url).
 
 `manage.py runserver` will start your http server.
 
