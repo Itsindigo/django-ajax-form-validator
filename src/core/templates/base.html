@@ -7,6 +7,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
+        <link rel="stylesheet" href="{% static 'main.css' %}">
         {% block meta_tags %}
         {% endblock meta_tags %}
 
@@ -15,30 +16,40 @@
     </head>
 
     <body>
-        {% block body %}
-            {% include '_components/header.html' %}
+        <div class="wrapper">
+            {% block body %}
+                {% include '_components/header.html' %}
 
-        {% endblock body %}
-    </body>
+            {% endblock body %}
+            <div class="push"></div>
+        </div>
 
-    <script>
-        (function() {
-            class Initialiser {
-                constructor(selector, klass) {
-                    let node = document.querySelector(`[data-widget=${selector}]`);
-                    if (!node) {
-                        return;
+        <script>
+            (function() {
+                class Initialiser {
+                    constructor(selector, klass) {
+                        let node = document.querySelector(`[data-widget=${selector}]`);
+                        if (!node) {
+                            return;
+                        }
+
+                        return new klass(node)
                     }
-
-                    return new klass(node)
                 }
-            }
 
-            window.initialiser = Initialiser;
-        })();
-    </script>
+                window.initialiser = Initialiser;
+            })();
+        </script>
 
-    <footer>
-        {% block extra_scripts %}{% endblock extra_scripts%}
-    </footer>
+
+        <footer>
+            <div class="fix-bottom footer">
+            <span>
+                <a href="https://github.com/Itsindigo/django-ajax-form-validator" title="Github Django Ajax Form Validator">Interested in the code? See it here</a>
+                <img src="{% static 'img/GitHub-Mark-32px.png' %}" alt="Github Logo">
+            </span>
+            </div>
+            {% block extra_scripts %}{% endblock extra_scripts%}
+        </footer>
+    </body>
 </html>
