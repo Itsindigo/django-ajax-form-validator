@@ -35,7 +35,7 @@ class FormView {
         })
         .then(response => response.json())
         .then(data => {
-            data.errors ? this.handleErrorMessages(data) : this.container.submit();
+            data.errors ? this.handleErrorMessages(data.errors) : this.container.submit();
         })
         .catch(function(err) {
             console.error(err);
@@ -79,7 +79,7 @@ class FormView {
             if (fieldName === '__all__') {
                 this._handleGeneralErrors(data[fieldName])
             } else {
-                this._handleFieldErrors(data[fieldName])
+                this._handleFieldErrors(data[fieldName], fieldName)
             }
         }
     }
@@ -88,10 +88,27 @@ class FormView {
 
     }
 
-    _handleFieldErrors(errors) {
-
+    _handleFieldErrors(errors, fieldName) {
+        console.log('reaches', errors, fieldName);
+        let field = this.container.querySelector(`[name="${fieldName}"]`);
+        if (field) {
+            // Loop over any error messages.
+            for (let i=0; i < errors.length; i++) {
+                field.closest('.field').append(this._newError(errors[i]));
+            }
+        }
     }
 
+    _newError(content) {
+        // Create a div node
+        let div = document.createElement('div');
+        // Create text
+        let text = document.createTextNode(content);
+        div.classList.add('error-message');
+        // Place text in div
+        div.appendChild(text);
+        return div
+    }
 }
 
 new window.initialiser('index-form', FormView);
