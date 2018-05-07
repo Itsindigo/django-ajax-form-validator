@@ -8,6 +8,8 @@ This is intended as a quick reference and showcase.
 
 The aim of this project was to leverage django's form validating abilities, without having to duplicate logic in JS, while also supporting browsers that might not be running JS.
 
+You can view the code in action [here](https://intense-taiga-17896.herokuapp.com/)!
+
 ### Features
 The meat of this project's server side logic resides in the `AjaxFormView` found in `src/core/mixins.py`
 
@@ -34,8 +36,6 @@ class AjaxFormView(FormView):
         return self.form_valid_ajax(form)
 
 ```
-
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 
 
