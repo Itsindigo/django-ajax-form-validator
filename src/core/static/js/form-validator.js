@@ -68,9 +68,9 @@ class FormView {
     }
 
     clearErrorMessages() {
-        let errors = this.container.querySelectorAll('error-wrapper');
+        let errors = this.container.querySelectorAll('.error-message');
         if (errors.length) {
-            errors.map(error => error.remove())
+            [...errors].map(error => error.remove())
         }
     }
 
@@ -89,7 +89,6 @@ class FormView {
     }
 
     _handleFieldErrors(errors, fieldName) {
-        console.log('reaches', errors, fieldName);
         let field = this.container.querySelector(`[name="${fieldName}"]`);
         if (field) {
             // Loop over any error messages.
