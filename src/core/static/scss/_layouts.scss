@@ -37,3 +37,12 @@ html, body {
 
   }
 }
+
+.confirmation {
+  // Needed to precedent over semantic UI stuff.
+  margin-top: 100px !important;
+  
+  h2 {
+    text-align: center;
+  }
+}
