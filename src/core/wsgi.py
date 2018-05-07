@@ -5,7 +5,7 @@ from django.core.wsgi import get_wsgi_application
 __all__ = ['application']
 
 
-os.environ.setdefault('DEPLOY_ENV', 'local')
+os.environ.setdefault('DEPLOY_ENV', 'heroku')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings.%s' % os.environ['DEPLOY_ENV'])
 
 application = get_wsgi_application()
