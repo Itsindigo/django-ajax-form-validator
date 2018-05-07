@@ -7,6 +7,16 @@
     <div class="ui raised very padded text container segment">
         <h2>Form</h2>
         <form class="ui form" action="{% url 'index' %}" method="POST" data-widget="index-form" novalidate>
+            <div class="general-error-container">
+
+                {% if form.non_field_errors %}
+                    <div class="error-box">
+                        {% for error in form.non_field_errors %}
+                            <div class="error-message"> - {{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
             {% csrf_token %}
 
             <div class="field">

@@ -85,7 +85,14 @@ class FormView {
     }
 
     _handleGeneralErrors(errors) {
+        // Creates a flash message element to display General Errors on the form.
+        // Render errors at each error point.
+        let anchorPoint = this.container.querySelector('.general-error-container');
 
+        if (!anchorPoint) { return }
+
+        let errorContainerElement = this._spawnErrorContainer(errors);
+        anchorPoint.appendChild(errorContainerElement);
     }
 
     _handleFieldErrors(errors, fieldName) {
@@ -98,12 +105,22 @@ class FormView {
         }
     }
 
+    _spawnErrorContainer(errors) {
+        let div = document.createElement('div');
+        div.className = 'error-box';
+        for (let i=0; i < errors.length; i++) {
+            let error = errors[i];
+            div.appendChild(this._newError(` - ${error}`));
+        }
+        return div
+    }
+
     _newError(content) {
         // Create a div node
         let div = document.createElement('div');
         // Create text
         let text = document.createTextNode(content);
-        div.classList.add('error-message');
+        div.className = 'error-message';
         // Place text in div
         div.appendChild(text);
         return div

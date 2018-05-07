@@ -31,3 +31,8 @@ class UserDetailsForm(forms.Form):
     availability_date = fields.DateField(
         input_formats=['%m/%d/%y']
     )
+
+    def clean(self):
+        self.add_error(None, 'This is a General Error')
+        self.add_error(None, 'Another one')
+        super(UserDetailsForm, self).clean()

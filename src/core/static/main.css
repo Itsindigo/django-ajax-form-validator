@@ -27,4 +27,15 @@ html, body {
       padding-left: 5px;
       vertical-align: middle; }
 
+.error-box {
+  border-radius: 5px;
+  border-color: 1px solid #e51c23;
+  background-color: #fdd1cc;
+  margin-bottom: 15px; }
+  .error-box .error-message {
+    padding: 5px;
+    color: #e51c23;
+    font-size: 0.9em;
+    font-weight: bold; }
+
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,17 @@
+$rose-warning: #fdd1cc;
+$error-red: #e51c23;
+
+.error-box {
+  border-radius: 5px;
+  border-color: 1px solid $error-red;
+  background-color: $rose-warning;
+  margin-bottom: 15px;
+
+  .error-message {
+    padding: 5px;
+    color: $error-red;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+}
+
