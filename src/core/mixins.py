@@ -10,12 +10,11 @@ class AjaxFormView(FormView):
         POST variables and then checked for validity.
         """
         form = self.get_form()
-        valid = form.is_valid()
 
         if not request.is_ajax():
             return super(AjaxFormView, self).post(request, *args, **kwargs)
 
-        if not valid:
+        if not form.is_valid():
             return self.form_invalid_ajax(form)
 
         return self.form_valid_ajax(form)

@@ -8,6 +8,8 @@ This is intended as a quick reference and showcase.
 
 The aim of this project was to leverage django's form validating abilities, without having to duplicate logic in JS, while also supporting browsers that might not be running JS.
 
+By abstracting Ajax conditional logic into view we are able to handle Ajax request in a singular view while maintaining a clear separation of concerns.
+
 You can view the code in action [here](https://intense-taiga-17896.herokuapp.com/)!
 
 ### Features
@@ -25,12 +27,11 @@ class AjaxFormView(FormView):
         POST variables. Ajax requests are parsed into JSON, returning any errors.
         """
         form = self.get_form()
-        valid = form.is_valid()
 
         if not request.is_ajax():
             return super(AjaxFormView, self).post(request, *args, **kwargs)
 
-        if not valid:
+        if not form.is_valid():
             return self.form_invalid_ajax(form)
 
         return self.form_valid_ajax(form)
@@ -72,6 +73,7 @@ Using this logic allows you to conditionally handle errors based on the JSON res
 * Django 2.0
 * Sass (Ruby)
 * Modern Web Browser (ES6) 
+* Postgres
 
 ### Running the project
 
@@ -85,7 +87,7 @@ Running `make` will setup your virtualenv, and install the project dependencies,
 
 `pipenv shell` will open a bash shell with your developer environment.
 
-You will need to create a database in order to run the project, you can use a configuration of your choice. 
+You will need to create a database in order to run the project, you can use a configuration of your choice, the project is currently configured to use Postgres. 
 
 Set your config in a `.env` file in the root of your project, and follow the naming conventions described in [this package](https://github.com/kennethreitz/dj-database-url).
 
@@ -93,7 +95,7 @@ Set your config in a `.env` file in the root of your project, and follow the nam
 
 
 ### Caveats
-I didn't want to include a JS build step, as the complexity detracts from the purpose of the project - exposing Django's validators to the front end.
+I opted not to include a JS build step in such a small project.
 
 JS scripts are loaded through an initialiser script that lives in the base.html, which detects any additional scripts included in template footer tags.
 
